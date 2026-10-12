@@ -6,21 +6,31 @@ use App\Http\Controllers\AboutController;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})
+    -> name('home');
 
-//Route::get('/about-us', function() {
-//    $company = 'Car Showcase';
-//    return view('about-us', [
-//        'company' => $company
-//    ]);
-//}) ->name('about-us');
+Route::get('about-us', function () {
+    return view('about-us');
+})
+    -> name('about-us');
 
-Route::get('/about-us', [AboutController::class, 'index']) ->name('about-us');
+Route::get('contact-us', function () {
+    return view('contact-us');
+})
+    -> name('contact-us');
 
-Route::get('products/{name}', function (string $name){
-//   return view ('products', ['name' => $name]);
-    return view ('products', compact('name'));
-});
+Route::get('login', function () {
+    return view('login');
+})
+    -> name('login');
+
+Route::get('register', function () {
+    return view('register');
+})
+    -> name('register');
+
+
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
