@@ -1,8 +1,12 @@
 
-<nav class="flex space-x-5">
-    <x-navlink href="{{route ('home')}}" :active="request() -> routeIs ('home')">Home</x-navlink>
-    <x-navlink href="{{route ('about-us')}}" :active="request() -> routeIs ('about-us')">About Us</x-navlink>
-    <x-navlink href="{{route ('contact-us')}}" :active="request() -> routeIs ('contact-us')">Contact</x-navlink>
-    <x-navlink href="{{route ('login')}}" :active="request() -> routeIs ('login')">Login</x-navlink>
-    <x-navlink href="{{route ('register')}}" :active="request() -> routeIs ('Register')">Register</x-navlink>
+<nav class="flex justify-between m-auto max-w-7xl">
+    <div class="space-x-4">
+        <x-navlink href="{{route ('home')}}" :active="request() -> routeIs ('home')">Home</x-navlink>
+        <x-navlink href="{{route ('about-us')}}" :active="request() -> routeIs ('about-us')">About Us</x-navlink>
+        <x-navlink href="{{route ('contact-us')}}" :active="request() -> routeIs ('contact-us')">Contact</x-navlink>
+    </div>
+    <div class="space-x-4">
+        <x-navlink href="{{route ('login')}}" :active="request() -> routeIs ('login')">Login</x-navlink>
+        <x-navlink href="{{route ('register')}}" :active="request() -> routeIs ('Register')">Register</x-navlink>
+    </div>
 </nav>

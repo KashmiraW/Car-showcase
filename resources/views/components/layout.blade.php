@@ -11,7 +11,7 @@
 </head>
 <body class="pt-5">
     @include('partials.navigation')
-<main>
+<main class="m-auto max-w-7xl">
     {{$slot}}
 </main>
 
