@@ -29,6 +29,7 @@ Route::get('register', function () {
 })
     -> name('register');
 
+Route::resource('/cars', \App\Http\Controllers\CarController::class);
 
 
 
