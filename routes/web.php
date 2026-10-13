@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\CarController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -14,10 +15,8 @@ Route::get('about-us', function () {
 })
     -> name('about-us');
 
-Route::get('contact-us', function () {
-    return view('contact-us');
-})
-    -> name('contact-us');
+
+Route::get('/cars', [CarController::class, 'index'])->name('car.index');
 
 Route::get('login', function () {
     return view('login');
@@ -28,6 +27,14 @@ Route::get('register', function () {
     return view('register');
 })
     -> name('register');
+
+Route::get('detail', function () {
+    return view('detail');
+})
+    -> name('detail');
+
+
+
 
 Route::resource('/cars', \App\Http\Controllers\CarController::class);
 
