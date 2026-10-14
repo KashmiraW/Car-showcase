@@ -28,10 +28,9 @@ Route::get('register', function () {
 })
     -> name('register');
 
-Route::get('detail', function () {
-    return view('detail');
-})
-    -> name('detail');
+
+Route::get('/cars/{id}', [CarController::class, 'show'])
+    ->name('cars.show');
 
 Route::get('create', function () {
     return view('create');

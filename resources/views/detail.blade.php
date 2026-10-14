@@ -1,11 +1,7 @@
-
-    <x-layout title="detail">
-
-        <h1>Detail</h1>
-
-        <div>
-            <a href="{{ route('home') }}">Return home</a>
-        </div>
-
-    </x-layout>
-
+<x-layout title="details">
+<section class="mt-10">
+    <h1 class="font-bold text-3xl mb-5">{{ $car->title }}</h1>
+    <p class="mb-10">{{ $car->description }}</p>
+    <a class="p-4 text-center bg-red-900 text-white rounded-lg" href="{{ route('cars.index') }}">Go back</a>
+</section>
+</x-layout>

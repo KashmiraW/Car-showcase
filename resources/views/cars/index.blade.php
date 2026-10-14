@@ -8,7 +8,7 @@
                 <p class="block">{{$car->description}}</p>
 
                 <div>
-                    <a class="p-4 text-center bg-red-900 text-white rounded-lg" href="{{route('detail', $car)}}">View details</a>
+                    <a class="p-4 text-center bg-red-900 text-white rounded-lg" href="{{route('cars.show', $car->id)}}">View details</a>
                     <a class="p-4 text-center bg-red-900 text-white rounded-lg" href="{{route('update', $car)}}">Edit / Delete</a>
 {{--                    <form method="post" action="{{ route('cars.destroy', $car) }}">--}}
 {{--                        @method('DELETE')--}}
