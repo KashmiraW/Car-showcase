@@ -9,11 +9,11 @@
 
                 <div>
                     <a class="p-4 text-center bg-red-900 text-white rounded-lg" href="{{route('detail', $car)}}">View details</a>
-                    <a class="p-4 text-center bg-red-900 text-white rounded-lg" href="{{route('update', $car)}}">Update</a>
-                    <form method="post" action="{{ route('cars.destroy', $car) }}">
-                        @method('DELETE')
-                        <button type="submit" class="p-4 text-center bg-red-900 text-white rounded-lg">Delete</button>
-                    </form>
+                    <a class="p-4 text-center bg-red-900 text-white rounded-lg" href="{{route('update', $car)}}">Edit / Delete</a>
+{{--                    <form method="post" action="{{ route('cars.destroy', $car) }}">--}}
+{{--                        @method('DELETE')--}}
+{{--                        <button type="submit" class="p-4 text-center bg-red-900 text-white rounded-lg">Delete</button>--}}
+{{--                    </form>--}}
                </div>
 
             </artical>
