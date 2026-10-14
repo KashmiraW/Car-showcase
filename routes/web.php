@@ -33,6 +33,11 @@ Route::get('detail', function () {
 })
     -> name('detail');
 
+Route::get('create', function () {
+    return view('create');
+})
+    -> name('create');
+
 
 
 
