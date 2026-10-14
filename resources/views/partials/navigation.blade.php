@@ -1,5 +1,5 @@
 
-<nav class="flex justify-between m-auto max-w-7xl">
+<nav class="flex justify-between bg-red-900 p-10 text-white font-bold">
     <div class="space-x-4">
         <x-navlink href="{{route ('home')}}" :active="request() -> routeIs ('home')">Home</x-navlink>
         <x-navlink href="{{route ('about-us')}}" :active="request() -> routeIs ('about-us')">About Us</x-navlink>

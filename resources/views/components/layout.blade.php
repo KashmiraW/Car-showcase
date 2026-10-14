@@ -9,7 +9,7 @@
     <title>{{$title}} | {{config('app.name')}}</title>
     @vite (['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="pt-5">
+<body>
     @include('partials.navigation')
 <main class="m-auto max-w-7xl">
     {{$slot}}

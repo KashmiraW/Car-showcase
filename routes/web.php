@@ -38,6 +38,12 @@ Route::get('create', function () {
 })
     -> name('create');
 
+Route::get('update', function () {
+    return view('update');
+})
+    -> name('update');
+
+
 
 
 
