@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Car;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class CarController extends Controller
 {
@@ -64,7 +65,8 @@ class CarController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $car = Car::findOrFail($id);
+        return view('update', compact('car'));
     }
 
     /**
@@ -72,15 +74,37 @@ class CarController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $car = Car::findOrFail($id);
+
+        $validated = $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'required|string',
+            'image' => 'nullable|image|max:2048',
+        ]);
+
+        if ($request->hasFile('image')) {
+            $newImage = $request->file('image')->storePublicly('cars', 'public');
+
+            if ($car->image) {
+                Storage::disk('public')->delete($car->image);
+            }
+
+            $validated['image'] = $newImage;
+        }
+
+        $car->update($validated);
+
+        return redirect()->route('cars.show', $car->id)->with('success', 'Car updated successfully.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Car $cars)
+    public function destroy(string $id)
     {
-//        $cars->delete();
-//        return redirect()->route('cars.index')->with('success', 'Car deleted successfully.');
+        $car = Car::findOrFail($id);
+        $car->delete();
+
+        return redirect()->route('cars.index')->with('success', 'Car deleted successfully.');
     }
 }

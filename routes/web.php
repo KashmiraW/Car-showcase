@@ -18,16 +18,6 @@ Route::get('about-us', function () {
 
 Route::get('/cars', [CarController::class, 'index'])->name('car.index');
 
-Route::get('login', function () {
-    return view('login');
-})
-    -> name('login');
-
-Route::get('register', function () {
-    return view('register');
-})
-    -> name('register');
-
 
 Route::get('/cars/{id}', [CarController::class, 'show'])
     ->name('cars.show');

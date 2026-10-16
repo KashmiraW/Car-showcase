@@ -6,15 +6,19 @@
 
                <strong>{{$car->title}}</strong>
                 <p class="block">{{$car->description}}</p>
-
                 <div>
                     <a class="p-4 text-center bg-red-900 text-white rounded-lg" href="{{route('cars.show', $car->id)}}">View details</a>
-                    <a class="p-4 text-center bg-red-900 text-white rounded-lg" href="{{route('update', $car)}}">Edit / Delete</a>
+                    <a class="p-4 text-center bg-red-900 text-white rounded-lg" href="{{route('cars.edit', $car->id)}}">Edit/Delete</a>
+                </div>
+
+
+{{--                <div>--}}
+{{--                    <a class="p-4 text-center bg-red-900 text-white rounded-lg" href="{{route('update', $car)}}">Edit / Delete</a>--}}
 {{--                    <form method="post" action="{{ route('cars.destroy', $car) }}">--}}
 {{--                        @method('DELETE')--}}
 {{--                        <button type="submit" class="p-4 text-center bg-red-900 text-white rounded-lg">Delete</button>--}}
 {{--                    </form>--}}
-               </div>
+{{--               </div>--}}
 
             </artical>
         @endforeach

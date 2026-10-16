@@ -7,7 +7,13 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Car extends Model
 {
-    protected $fillable = ['title, description, image, user_id, brand_id'];
+    protected $fillable = [
+        'title',
+         'description',
+         'image',
+         'user_id',
+         'brand_id',
+        ];
 
     public function reviews(): HasMany{
         return $this->hasMany(Review::class);
