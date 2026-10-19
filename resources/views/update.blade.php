@@ -44,7 +44,7 @@
                 <img class="w-52 rounded-lg" src="{{ asset('storage/' . $car->image) }}">
             @endif
 
-            <label for="image">Choose a new image (optional)</label>
+            <label for="image">Choose a new image</label>
             <input type="file" name="image" id="image" accept="image/*">
 
             @error('image')

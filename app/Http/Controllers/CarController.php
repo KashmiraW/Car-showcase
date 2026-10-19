@@ -11,10 +11,16 @@ class CarController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        $cars = Car::all();
-        return view('cars.index', compact('cars'));
+    public function index(Request $request){
+        $search = $request->search;
+
+        if ($search) {
+            $cars = Car::where('title', 'LIKE', "%$search%")->orWhere('description', 'LIKE', "%$search%")->get();
+        } else {
+            $cars = Car::all();
+        }
+
+        return view('cars.index', compact('cars', 'search'));
     }
 
     /**
