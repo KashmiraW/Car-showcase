@@ -43,15 +43,15 @@ label{
 
         </div>
 
-{{--        <div class="flex flex-col gap-2">--}}
-{{--            <label for="brand">Brand</label>--}}
-{{--            <input type="text" id="brand" name="brand" value="{{old('brand')}}">--}}
+        <div class="flex flex-col gap-2">
+            <label for="brand">Brand</label>
+            <input type="text" id="brand" name="brand" value="{{old('brand')}}">
 
-{{--            @error('brand')--}}
-{{--            <span class="text-red-900">{{$message}}</span>--}}
-{{--            @enderror--}}
+            @error('brand')
+            <span class="text-red-900">{{$message}}</span>
+            @enderror
 
-{{--        </div>--}}
+        </div>
 
         <div>
             <button class="p-4 w-52 text-center bg-red-900 text-white rounded-lg" type="submit">Create</button>

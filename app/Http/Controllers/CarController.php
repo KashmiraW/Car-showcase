@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Car;
+use App\Models\Brand;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -13,15 +14,25 @@ class CarController extends Controller
      */
     public function index(Request $request){
         $search = $request->search;
+        $brand = $request->brand;
+
+        $brands = Brand::all();
+        $cars = Car::query();
+
 
         if ($search) {
-            $cars = Car::where('title', 'LIKE', "%$search%")->orWhere('description', 'LIKE', "%$search%")->get();
-        } else {
-            $cars = Car::all();
-        }
+            $cars->where(function ($query) use ($search) {
+                $query->where('title', 'LIKE', "%$search%")->orWhere('description', 'LIKE', "%$search%");});
+            }
 
-        return view('cars.index', compact('cars', 'search'));
-    }
+            if ($brand) {
+                $cars->where('brand_id', $brand);
+            }
+
+            $cars = $cars->get();
+
+            return view('cars.index', compact('cars', 'search', 'brands', 'brand'));
+        }
 
     /**
      * Show the form for creating a new resource.
@@ -39,7 +50,7 @@ class CarController extends Controller
         $request-> validate([
             'title' => 'required|string',
             'description' => 'required|string',
-//            'brand_id' => 'required|integer',
+            'brand_id' => 'required|integer',
             'image' => 'image|required'
         ]);
 
@@ -50,7 +61,7 @@ class CarController extends Controller
         $car->description = $request->input('description');
         $car->image = $nameOfFile;
         $car->user_id = 1;
-        $car->brand_id = 1;
+        $car->brand_id = $request->input('brand_id');
         $car->save();
 
         return redirect()-> route('cars.index')->with('success', 'Car created successfully.');

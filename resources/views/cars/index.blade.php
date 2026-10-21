@@ -1,5 +1,17 @@
 <x-layout title="Cars">
 
+    <h2 class="mt-6 mb-4 text-2xl font-bold">Filter by brand</h2>
+
+    <div class="flex flex-wrap gap-3 mb-8">
+
+        <a class="px-3 py-1.5 text-sm rounded-md border border-red-900 {{ empty($brand) ? 'bg-red-900 text-white' : 'bg-white text-red-900 hover:bg-red-900 hover:text-white' }}"  href="{{ route('cars.index', ['search' => $search]) }}" >All brands</a>
+
+        @foreach ($brands as $item)
+            <a class="px-3 py-1.5 text-sm rounded-md border border-red-900 {{ $brand == $item->id ? 'bg-red-900 text-white' : 'bg-white text-red-900 hover:bg-red-900 hover:text-white' }}" href="{{ route('cars.index', ['brand' => $item->id, 'search' => $search]) }}">{{ $item->name }}</a>
+        @endforeach
+
+    </div>
+
     <form class="flex flex-col sm:flex-row gap-3 mt-6 mb-8" method="GET" action="{{route('cars.index')}}">
         <input class="border border-gray-300 rounded-lg p-3 flex-1" type="text" name="search" placeholder="Search cars" value="{{$search ?? ''}}">
         <button class="p-3 bg-red-900 text-white rounded-lg" type="submit">Search</button>
