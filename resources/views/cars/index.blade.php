@@ -9,7 +9,10 @@
         @foreach ($brands as $item)
             <a class="px-3 py-1.5 text-sm rounded-md border border-red-900 {{ $brand == $item->id ? 'bg-red-900 text-white' : 'bg-white text-red-900 hover:bg-red-900 hover:text-white' }}" href="{{ route('cars.index', ['brand' => $item->id, 'search' => $search]) }}">{{ $item->name }}</a>
         @endforeach
+    </div>
 
+    <div class="mt-6">
+        <a  class="inline-block p-2 bg-red-900 text-white rounded-lg hover:bg-red-800 text-sm" href="{{ route('create') }}">Create car</a>
     </div>
 
     <form class="flex flex-col sm:flex-row gap-3 mt-6 mb-8" method="GET" action="{{route('cars.index')}}">
