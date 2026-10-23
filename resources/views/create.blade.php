@@ -15,6 +15,7 @@ label{
 <x-layout title="Create car">
     <h1 class="mt-10 font-bold text-3xl">Create your own car</h1>
     <form method="POST" enctype="multipart/form-data" action="{{route('cars.store')}}">
+        @csrf
         <div class="flex flex-col gap-2">
             <label for="title">Title</label>
             <input type="text" name="title" id="title" value="{{old('title')}}">
@@ -43,15 +44,23 @@ label{
 
         </div>
 
+
         <div class="flex flex-col gap-2">
-            <label for="brand">Brand</label>
-            <input type="text" id="brand" name="brand" value="{{old('brand')}}">
+            <label for="brand_id">Brand</label>
 
-            @error('brand')
-            <span class="text-red-900">{{$message}}</span>
+            <select id="brand_id" name="brand_id" required>
+                <option value="">Choose a brand</option>
+
+                @foreach (\App\Models\Brand::all() as $brand)
+                    <option value="{{ $brand->id }}"{{ old('brand_id') == $brand->id ? 'selected' : '' }}>{{ $brand->name }}</option>
+                @endforeach
+            </select>
+
+            @error('brand_id')
+            <span class="text-red-900">{{ $message }}</span>
             @enderror
-
         </div>
+
 
         <div>
             <button class="p-4 w-52 text-center bg-red-900 text-white rounded-lg" type="submit">Create</button>
