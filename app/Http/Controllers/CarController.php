@@ -60,7 +60,7 @@ class CarController extends Controller
         $car->title = $request->input('title');
         $car->description = $request->input('description');
         $car->image = $nameOfFile;
-        $car->user_id = 1;
+        $car->user_id = auth()->id();
         $car->brand_id = $request->input('brand_id');
         $car->save();
 
@@ -83,6 +83,11 @@ class CarController extends Controller
     public function edit(string $id)
     {
         $car = Car::findOrFail($id);
+
+        if (auth()->user()->role !== 'admin' && $car->user_id != auth()->id()) {
+            abort(403, 'You are not allowed to edit this car.');
+        }
+
         return view('update', compact('car'));
     }
 
@@ -92,6 +97,10 @@ class CarController extends Controller
     public function update(Request $request, string $id)
     {
         $car = Car::findOrFail($id);
+
+        if (auth()->user()->role !== 'admin' && $car->user_id != auth()->id()) {
+            abort(403, 'You are not allowed to edit this car.');
+        }
 
         $validated = $request->validate([
             'title' => 'required|string|max:255',

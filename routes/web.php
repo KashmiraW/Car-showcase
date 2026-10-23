@@ -32,13 +32,11 @@ Route::get('update', function () {
 })
     -> name('update');
 
+Route::resource('/cars', CarController::class)->except(['destroy']);
 
-
-
-
-Route::resource('/cars', \App\Http\Controllers\CarController::class);
-
-
+Route::delete('/cars/{car}', [CarController::class, 'destroy'])
+    ->middleware(['auth', 'admin'])
+    ->name('cars.destroy');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

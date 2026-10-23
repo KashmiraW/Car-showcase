@@ -56,9 +56,16 @@
         </div>
     </form>
 
-    <form action="{{ route('cars.destroy', $car->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this car?');">
-        @csrf
-        @method('DELETE')
-        <button type="submit" class="p-4 w-52 text-center bg-black text-white rounded-lg">Delete</button>
-    </form>
+
+    @auth
+        @if (auth()->user()->role === 'admin')
+            <form action="{{ route('cars.destroy', $car->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this car?');">
+                @csrf
+                @method('DELETE')
+
+                <button type="submit" class="p-4 w-52 text-center bg-black text-white rounded-lg">Delete</button>
+            </form>
+        @endif
+    @endauth
+
 </x-layout>
