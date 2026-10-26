@@ -4,6 +4,9 @@
         <x-navlink href="{{route ('home')}}" :active="request() -> routeIs ('home')">Home</x-navlink>
         <x-navlink href="{{route ('about-us')}}" :active="request() -> routeIs ('about-us')">About Us</x-navlink>
         <x-navlink href="{{route ('cars.index')}}" :active="request() -> routeIs ('cars.index')">Cars</x-navlink>
+        @auth
+            <x-navlink href="{{ route('favorites.index') }}" :active="request()->routeIs('favorites.index')">My Favorites</x-navlink>
+        @endauth
     </div>
 
     <div class="flex items-center gap-4">

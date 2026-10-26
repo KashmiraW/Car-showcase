@@ -33,16 +33,23 @@
                <strong>{{$car->title}}</strong>
                 <p class="block">{{$car->description}}</p>
 
-                <div>
+                <div class="flex flex-wrap items-center gap-2">
                     <a class="p-4 text-center bg-red-900 text-white rounded-lg" href="{{ route('cars.show', $car->id) }}">View details</a>
 
                     @auth
                         @if (auth()->user()->role === 'admin' || $car->user_id == auth()->id())
-                            <a class="p-4 text-center bg-red-900 text-white rounded-lg" href="{{ route('cars.edit', $car->id) }}">Edit/Delete</a>
+                            <a class="p-4 text-center bg-gray-500 text-white rounded-lg" href="{{ route('cars.edit', $car->id) }}">Edit/Delete</a>
                         @endif
                     @endauth
-                </div>
 
+
+                @auth
+                    <form action="{{ route('favorites.store', $car) }}" method="POST">
+                        @csrf
+                        <button type="submit" class="p-3 bg-black text-white rounded-lg">Add to Favorites</button>
+                    </form>
+                @endauth
+                </div>
             </artical>
         @endforeach
     </div>

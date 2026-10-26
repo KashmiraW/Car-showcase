@@ -18,5 +18,10 @@ class Car extends Model
     public function reviews(): HasMany{
         return $this->hasMany(Review::class);
     }
+
+    public function favoritedByUsers()
+    {
+        return $this->belongsToMany(User::class, 'favorites');
+    }
 }
 

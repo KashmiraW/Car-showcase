@@ -1,18 +1,19 @@
-<style>
-form{
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    margin-top: 30px;
-}
-
-label{
-    font-weight: bold;
-}
-
-</style>
 
 <x-layout title="Create car">
+    <style>
+        form{
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-top: 30px;
+        }
+
+        label{
+            font-weight: bold;
+        }
+
+    </style>
+
     <h1 class="mt-10 font-bold text-3xl">Create your own car</h1>
     <form method="POST" enctype="multipart/form-data" action="{{route('cars.store')}}">
         @csrf

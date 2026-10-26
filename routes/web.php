@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\CarController;
+use App\Http\Controllers\FavoriteController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -32,7 +33,18 @@ Route::get('update', function () {
 })
     -> name('update');
 
+Route::get('admin', function () {
+    return view('admin');
+})
+    ->name('admin');
+
 Route::resource('/cars', CarController::class)->except(['destroy']);
+
+Route::middleware('auth')->group(function () {
+    Route::get('/favorites', [FavoriteController::class, 'index'])->name('favorites.index');
+    Route::post('/favorites/{car}', [FavoriteController::class, 'store'])->name('favorites.store');
+    Route::delete('/favorites/{car}', [FavoriteController::class, 'destroy'])->name('favorites.destroy');
+});
 
 Route::delete('/cars/{car}', [CarController::class, 'destroy'])
     ->middleware(['auth', 'admin'])
