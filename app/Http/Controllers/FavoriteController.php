@@ -19,8 +19,12 @@ class FavoriteController extends Controller
     {
         $user = auth()->user();
 
-        if ($user->role !== 'admin' && $user->login_count < 3) {
-            return back()->with('error', 'You must log in at least 3 times before adding favorites.');
+        $loginDays = \App\Models\LoginHistory::where('user_id', $user->id)
+            ->distinct()
+            ->count(\Illuminate\Support\Facades\DB::raw('DATE(logged_in_at)'));
+
+        if ($user->role !== 'admin' && $loginDays < 3) {
+            return back()->with('error', 'You must log in on at least 3 different days before adding favorites.');
         }
 
         $user->favoriteCars()->syncWithoutDetaching([$car->id]);
