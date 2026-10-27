@@ -9,10 +9,11 @@ class Car extends Model
 {
     protected $fillable = [
         'title',
-         'description',
-         'image',
-         'user_id',
-         'brand_id',
+        'description',
+        'image',
+        'user_id',
+        'brand_id',
+        'is_active',
         ];
 
     public function reviews(): HasMany{

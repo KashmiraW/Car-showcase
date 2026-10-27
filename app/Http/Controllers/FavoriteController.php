@@ -17,8 +17,13 @@ class FavoriteController extends Controller
 
     public function store(Car $car)
     {
-        auth()->user()->favoriteCars()->syncWithoutDetaching([$car->id]);
+        $user = auth()->user();
 
+        if ($user->role !== 'admin' && $user->login_count < 3) {
+            return back()->with('error', 'You must log in at least 3 times before adding favorites.');
+        }
+
+        $user->favoriteCars()->syncWithoutDetaching([$car->id]);
         return back()->with('success', 'Car added to favorites!');
     }
 

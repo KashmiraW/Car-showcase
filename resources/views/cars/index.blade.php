@@ -1,5 +1,9 @@
 <x-layout title="Cars">
 
+    @if (session('error'))
+        <p class="mt-4 p-3 bg-red-100 text-red-800 rounded-lg">{{ session('error') }}</p>
+    @endif
+
     <h2 class="mt-6 mb-4 text-2xl font-bold">Filter by brand</h2>
 
     <div class="flex flex-wrap gap-3 mb-8">
