@@ -17,8 +17,7 @@ class CarController extends Controller
         $brand = $request->brand;
 
         $brands = Brand::all();
-        $cars = Car::query();
-
+        $cars = Car::where('is_active', true);
 
         if ($search) {
             $cars->where(function ($query) use ($search) {
@@ -133,4 +132,19 @@ class CarController extends Controller
 
         return redirect()->route('cars.index')->with('success', 'Car deleted successfully.');
     }
+
+    public function changeStatus(Car $car)
+    {
+        $car->is_active = !$car->is_active;
+        $car->save();
+
+        return back()->with('success', 'Car status updated!');
+    }
+    public function admin()
+    {
+        $cars = Car::all();
+
+        return view('admin', compact('cars'));
+    }
+
 }

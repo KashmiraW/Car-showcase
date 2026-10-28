@@ -33,12 +33,15 @@ Route::get('update', function () {
 })
     -> name('update');
 
-Route::get('admin', function () {
-    return view('admin');
-})
+Route::get('/admin', [CarController::class, 'admin'])
+    ->middleware(['auth', 'admin'])
     ->name('admin');
 
 Route::resource('/cars', CarController::class)->except(['destroy']);
+
+Route::post('/cars/{car}/change-status', [CarController::class, 'changeStatus'])
+    ->middleware(['auth', 'admin'])
+    ->name('cars.changeStatus');
 
 Route::middleware('auth')->group(function () {
     Route::get('/favorites', [FavoriteController::class, 'index'])->name('favorites.index');

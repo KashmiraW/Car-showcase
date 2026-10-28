@@ -24,5 +24,6 @@ class Car extends Model
     {
         return $this->belongsToMany(User::class, 'favorites');
     }
+
 }
 

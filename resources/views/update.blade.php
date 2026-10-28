@@ -1,6 +1,6 @@
 
 <style>
-    form {
+    .car-form {
         display: flex;
         flex-direction: column;
         gap: 1rem;
@@ -15,7 +15,7 @@
 <x-layout title="edit">
     <h1 class="mt-10 font-bold text-3xl">Edit your car</h1>
 
-    <form method="POST" enctype="multipart/form-data" action="{{ route('cars.update', $car->id) }}">
+    <form class="car-form"  method="POST" enctype="multipart/form-data" action="{{ route('cars.update', $car->id) }}">
         @csrf
         @method('PUT')
 
